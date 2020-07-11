@@ -8,7 +8,19 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+<header>
+  <nav>
+    <ul>
+      <% if user_signed_in? %>
+        <li>保護者</li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+      <% else admin_signed_in? %>
+        <li>先生</li>
+        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+      <% end %>
+    </ul>
+  </nav>
+</header>
   <body>
     <%= yield %>
   </body>
